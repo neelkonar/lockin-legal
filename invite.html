@@ -3,14 +3,23 @@
 <head>
   <title>Opening Lockin...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, sans-serif; background: #0D0D0D; color: #F5F5F5; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 32px; text-align: center; }
+    p { color: #8A8A8A; font-size: 15px; line-height: 1.5; margin-bottom: 32px; }
+    a.btn { display: inline-block; background: #ff5b2d; color: #fff; padding: 16px 40px; border-radius: 10px; text-decoration: none; font-size: 17px; font-weight: 600; }
+  </style>
 </head>
 <body>
+  <p>You have been invited to connect on Lockin.<br>Tap the button below to open the app and pair.</p>
+  <a class="btn" id="open-btn">Open in Lockin</a>
   <script>
     const url = new URLSearchParams(window.location.search).get("url");
-    if (url) window.location = "lockin://partner-invite?url=" + encodeURIComponent(url);
+    if (url) {
+      const deep = "lockin://partner-invite?url=" + encodeURIComponent(url);
+      document.getElementById("open-btn").href = deep;
+      setTimeout(function() { window.location = deep; }, 100);
+    }
   </script>
-  <p style="font-family:sans-serif;text-align:center;padding-top:40px;color:#333">
-    Opening Lockin - make sure the app is installed.
-  </p>
 </body>
 </html>
